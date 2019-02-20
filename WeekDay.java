@@ -6,7 +6,7 @@ public class WeekDay {
 	
 	//weekArr simply stores each day of the week, may be better to
 	//fetch from file
-	String weekArr[] = new String[]{"Sunday", "Monday", "Tuesday", "Wedensday",
+	private String weekArr[] = new String[]{"Sunday", "Monday", "Tuesday", "Wedensday",
 			"Thursday", "Friday", "Saturday"};
 	public WeekDay {
 		dayInt = 0;
@@ -39,7 +39,7 @@ public class WeekDay {
 	 * @return returns a string specifying the next day of the week
 	 */
 	public String getTomorrowString() {
-		int dayAdjusted = Math.floorMod(dayInt+1, 7);
+		int dayAdjusted = adjustDay(dayInt+1);
 		String r = weekArr[dayAdjusted];
 		return r;
 	}
@@ -48,7 +48,7 @@ public class WeekDay {
 	 * @return returns a string specifying the previous day of the week
 	 */
 	public String getYesterdayString() {
-		int dayAdjusted = Math.floorMod(dayInt-1, 7);
+		int dayAdjusted = adjustDay(dayInt-1);
 		String r = weekArr[dayAdjusted];
 		return r;
 	}
@@ -58,7 +58,7 @@ public class WeekDay {
 	 * for that number
 	 */
 	public String getDayString() {
-		int dayAdjusted = Math.floorMod(dayInt, 7);
+		int dayAdjusted = adjustDay(dayInt);
 		String r = weekArr[dayAdjusted];
 		return r;
 	}
@@ -74,7 +74,10 @@ public class WeekDay {
 	 * @return returns the string of the days added to the current day
 	 */
 	public String addDays(int addedDays) {
-		int dayAdjusted = Math.floorMod(dayInt + addedDays,7);
+		int dayAdjusted = adjustDay(dayInt+addedDays);
 		return weekArr[dayAdjusted];
+	}
+	int adjustDay(int day) {
+		return Math.floorMod(day, 7);
 	}
 }
